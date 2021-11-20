@@ -7,7 +7,7 @@ import cell.Cell;
 import field.Field;
 // import field.View;
 
-public class PlayGame {
+public class Play {
 	//判断落棋位置是否合理（越界）
 	public static boolean ifReasonable(int limit, int input) {
 		if (input >= 0 && input < limit) return true;
