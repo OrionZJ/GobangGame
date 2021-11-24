@@ -61,7 +61,7 @@ public class GUI {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setTitle("GoBangGame");
+		frame.setTitle("GobangGame");
 		frame.add(view);
         frame.addMouseListener(new MouseListener() {   //为窗口添加鼠标事件监听器
 			@Override
