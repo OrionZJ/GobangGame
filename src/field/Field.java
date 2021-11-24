@@ -1,7 +1,5 @@
 package field;
 
-import java.util.ArrayList;
-
 import cell.Cell;
 
 public class Field {

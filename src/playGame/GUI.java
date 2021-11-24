@@ -3,6 +3,10 @@ package playGame;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import java.util.Random;
 
@@ -11,23 +15,23 @@ import field.Field;
 import field.View;
 
 public class GUI {
-	//åˆ¤æ–­è½æ£‹ä½ç½®æ˜¯å¦åˆç†ï¼ˆè¶Šç•Œï¼‰
+	//ÅĞ¶ÏÂäÆåÎ»ÖÃÊÇ·ñºÏÀí£¨Ô½½ç£©
 	public static boolean ifReasonable(int limit, int input) {
 		if (input >= 0 && input < limit) return true;
 		else return false;
 	}
-	//åˆ¤æ–­è½æ£‹ä½ç½®æ˜¯å¦å†²çªï¼ˆäº‹å…ˆæœ‰æ£‹ï¼‰
+	//ÅĞ¶ÏÂäÆåÎ»ÖÃÊÇ·ñ³åÍ»£¨ÊÂÏÈÓĞÆå£©
 	public static boolean ifConflict(int row, int col, Field field) {
 		if (field.get(row, col).status() == 0) return false;
 		else return true;
 	}
-	//æ‰“å°æ ¼å­
+	//´òÓ¡¸ñ×Ó
 	public static void printCell(Cell cell) {
 		if (cell.status() == 0) System.out.print('.');
 		if (cell.status() == 1) System.out.print('X');
 		if (cell.status() == 2) System.out.print('O');
 	}
-	//æ‰“å°æ£‹ç›˜
+	//´òÓ¡ÆåÅÌ
 	public static void printTable(Field field) {
 		for ( int i=0; i<field.getHeight(); i++ ) {
 			for ( int j=0; j<field.getWidth(); j++ ) {
@@ -46,10 +50,10 @@ public class GUI {
 		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
 		Random random = new Random();
-		//åˆå§‹åŒ–ç”¨æˆ·çš„æ£‹å­
+		//³õÊ¼»¯ÓÃ»§µÄÆå×Ó
 		Cell usrCell = new Cell();
 		usrCell.usr();
-		//åˆå§‹åŒ–ç”µè„‘çš„æ£‹å­
+		//³õÊ¼»¯µçÄÔµÄÆå×Ó
 		Cell comCell = new Cell();
 		comCell.computer();
 
@@ -59,6 +63,44 @@ public class GUI {
 		frame.setResizable(false);
 		frame.setTitle("Cells");
 		frame.add(view);
+        frame.addMouseListener(new MouseListener() {   //Îª´°¿ÚÌí¼ÓÊó±êÊÂ¼ş¼àÌıÆ÷
+			@Override
+			public void mousePressed(MouseEvent e) {
+			  // TODO Auto-generated method stub
+			  if(e.getButton()==MouseEvent.BUTTON1){    // ÅĞ¶Ï»ñÈ¡µÄ°´Å¥ÊÇ·ñÎªÊó±êµÄ×ó»÷     
+				view.mouseX = (int) (e.getX() - 7) / View.GRID_SIZE ;    //²»ÖªµÀ×î×ó×ø±êÎªÊ²Ã´ÊÇ7
+				view.mouseY = (int) (e.getY() - 30) / View.GRID_SIZE ;    ////²»ÖªµÀ×îÉÏ×ø±êÎªÊ²Ã´ÊÇ30
+				// view.mouseX = (int) e.getX();
+				// view.mouseY = (int) e.getY();
+				System.out.println("You clicked: x=" + view.mouseX + "   y=" + view.mouseY);		
+			   }
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			  // TODO Auto-generated method stub
+	 
+			}
+	 
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			  // TODO Auto-generated method stub
+	 
+			}
+	 
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // TODO Auto-generated method stub
+	 
+			}
+	 
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // TODO Auto-generated method stub
+	 
+			}	 
+			
+		  });
+          
 		frame.pack();
 		frame.setVisible(true);
 
@@ -66,46 +108,50 @@ public class GUI {
 			boolean reasonable = false;
 			boolean conflict = false;
 			
-			int col = 0;
-			int row = 0;
-			//è¾“å…¥ä¸‹æ£‹ä½ç½®
+			int col = 0; int row = 0;
+			//ÊäÈëÏÂÆåÎ»ÖÃ
 			do {
-				while (!reasonable) {    //è‹¥ç”¨æˆ·è¾“å…¥æ•°æ®è¶Šç•Œï¼Œåˆ™é‡å¤è¦æ±‚ç”¨æˆ·è¾“å…¥æ•°æ®
-					System.out.print("è¯·è¾“å…¥ä¸‹å­çš„åæ ‡ï¼š[row col]");
-					row = in.nextInt() - 1;
+                view.mouseX = -1; view.mouseY = -1;
+				while (!reasonable) {    //ÈôÓÃ»§ÊäÈëÊı¾İÔ½½ç£¬ÔòÖØ¸´ÒªÇóÓÃ»§ÊäÈëÊı¾İ
+					// System.out.print("ÇëÊäÈëÏÂ×ÓµÄ×ø±ê£º[row col]");
+					// row = in.nextInt() - 1;
+                    row = view.mouseY;
 					if(!(reasonable = ifReasonable(height,row))) 
-						System.out.println("Overflow!");
+						System.out.print("¾ÍĞ÷\r");
 					if (reasonable) {
-						col = in.nextInt() - 1;
+						// col = in.nextInt() - 1;
+                        col = view.mouseX;
 						if(!(reasonable = ifReasonable(width, col)))
-							System.out.println("Overflow!");
+							System.out.print("¾ÍĞ÷\r");
 					}
 				}
 				conflict = ifConflict(row, col, table);
-				reasonable = false;    //é‡ç½®
+				reasonable = false;    //ÖØÖÃ
 			} while (conflict);
 			table.place(row, col, usrCell);
 			printTable(table);
             frame.repaint();
-			//åˆ¤æ–­è¾“èµ¢
+			//ÅĞ¶ÏÊäÓ®
 			if (ifWin = table.ifWin(row, col)) {
 				System.out.println("You win!");
+                JOptionPane.showMessageDialog(frame, "ÄãÓ®ÁË£¡");
 				break;
 			}
-			//æœºå™¨éšæœºä¸‹æ£‹
+			//»úÆ÷Ëæ»úÏÂÆå
 			do {    
-				//å‡åŒ€åˆ†å¸ƒintå€¼ä»‹äº0ï¼ˆå«ï¼‰å’Œ boundï¼ˆä¸åŒ…æ‹¬ï¼‰ï¼Œå‚æ•°bound æ˜¯ä¸Šé™ã€‚
+				//¾ùÔÈ·Ö²¼intÖµ½éÓÚ0£¨º¬£©ºÍ bound£¨²»°üÀ¨£©£¬²ÎÊıbound ÊÇÉÏÏŞ¡£
 				col = random.nextInt(table.getWidth());  
 				row = random.nextInt(table.getHeight());
 				conflict = ifConflict(row, col, table);
 			} while (conflict);
 			table.place(row, col, comCell);
-			System.out.println("ç”µè„‘ä¸‹å­ï¼š["+row+' '+col+"]");
+			System.out.println("µçÄÔÏÂ×Ó£º["+row+' '+col+"]");
 			printTable(table);
             frame.repaint();
-			//åˆ¤æ–­è¾“èµ¢
+			//ÅĞ¶ÏÊäÓ®
 			if (ifWin = table.ifWin(row, col)) {
 				System.out.println("You lose.");
+                JOptionPane.showMessageDialog(null, "ÄãÊäÁË¡£");
 				break;
 			}
 		}
@@ -113,3 +159,4 @@ public class GUI {
 	}
 
 }
+
