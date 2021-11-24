@@ -13,7 +13,7 @@ import cell.Cell;
 
 public class View extends JPanel {
 	private static final long serialVersionUID = -5258995676212660595L;
-	public static final int GRID_SIZE = 30;
+	public static final int GRID_SIZE = 30;    //设置方格大小
 	private Field theField;
 	public int mouseX = -1;
 	public int mouseY = -1;
@@ -23,7 +23,7 @@ public class View extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics g) {    //画出整个棋盘
 		super.paint(g);
 		for ( int row = 0; row<theField.getHeight(); row++ ) {
 			for ( int col = 0; col<theField.getWidth(); col++ ) {
