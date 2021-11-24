@@ -8,23 +8,23 @@ import field.Field;
 // import field.View;
 
 public class Play {
-	//ÅĞ¶ÏÂäÆåÎ»ÖÃÊÇ·ñºÏÀí£¨Ô½½ç£©
+	//åˆ¤æ–­è½æ£‹ä½ç½®æ˜¯å¦åˆç†ï¼ˆè¶Šç•Œï¼‰
 	public static boolean ifReasonable(int limit, int input) {
 		if (input >= 0 && input < limit) return true;
 		else return false;
 	}
-	//ÅĞ¶ÏÂäÆåÎ»ÖÃÊÇ·ñ³åÍ»£¨ÊÂÏÈÓĞÆå£©
+	//åˆ¤æ–­è½æ£‹ä½ç½®æ˜¯å¦å†²çªï¼ˆäº‹å…ˆæœ‰æ£‹ï¼‰
 	public static boolean ifConflict(int row, int col, Field field) {
 		if (field.get(row, col).status() == 0) return false;
 		else return true;
 	}
-	//´òÓ¡¸ñ×Ó
+	//æ‰“å°æ ¼å­
 	public static void printCell(Cell cell) {
 		if (cell.status() == 0) System.out.print('.');
 		if (cell.status() == 1) System.out.print('X');
 		if (cell.status() == 2) System.out.print('O');
 	}
-	//´òÓ¡ÆåÅÌ
+	//æ‰“å°æ£‹ç›˜
 	public static void printTable(Field field) {
 		for ( int i=0; i<field.getHeight(); i++ ) {
 			for ( int j=0; j<field.getWidth(); j++ ) {
@@ -43,10 +43,10 @@ public class Play {
 		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
 		Random random = new Random();
-		//³õÊ¼»¯ÓÃ»§µÄÆå×Ó
+		//åˆå§‹åŒ–ç”¨æˆ·çš„æ£‹å­
 		Cell usrCell = new Cell();
 		usrCell.usr();
-		//³õÊ¼»¯µçÄÔµÄÆå×Ó
+		//åˆå§‹åŒ–ç”µè„‘çš„æ£‹å­
 		Cell comCell = new Cell();
 		comCell.computer();
 
@@ -56,10 +56,10 @@ public class Play {
 			
 			int col = 0;
 			int row = 0;
-			//ÊäÈëÏÂÆåÎ»ÖÃ
+			//è¾“å…¥ä¸‹æ£‹ä½ç½®
 			do {
-				while (!reasonable) {    //ÈôÓÃ»§ÊäÈëÊı¾İÔ½½ç£¬ÔòÖØ¸´ÒªÇóÓÃ»§ÊäÈëÊı¾İ
-					System.out.print("ÇëÊäÈëÏÂ×ÓµÄ×ø±ê£º[row col]");
+				while (!reasonable) {    //è‹¥ç”¨æˆ·è¾“å…¥æ•°æ®è¶Šç•Œï¼Œåˆ™é‡å¤è¦æ±‚ç”¨æˆ·è¾“å…¥æ•°æ®
+					System.out.print("è¯·è¾“å…¥ä¸‹å­çš„åæ ‡ï¼š[row col]");
 					row = in.nextInt() - 1;
 					if(!(reasonable = ifReasonable(height,row))) 
 						System.out.println("Overflow!");
@@ -70,26 +70,26 @@ public class Play {
 					}
 				}
 				conflict = ifConflict(row, col, table);
-				reasonable = false;    //ÖØÖÃ
+				reasonable = false;    //é‡ç½®
 			} while (conflict);
 			table.place(row, col, usrCell);
 			printTable(table);
-			//ÅĞ¶ÏÊäÓ®
+			//åˆ¤æ–­è¾“èµ¢
 			if (ifWin = table.ifWin(row, col)) {
 				System.out.println("You win!");
 				break;
 			}
-			//»úÆ÷Ëæ»úÏÂÆå
+			//æœºå™¨éšæœºä¸‹æ£‹
 			do {    
-				//¾ùÔÈ·Ö²¼intÖµ½éÓÚ0£¨º¬£©ºÍ bound£¨²»°üÀ¨£©£¬²ÎÊıbound ÊÇÉÏÏŞ¡£
+				//å‡åŒ€åˆ†å¸ƒintå€¼ä»‹äº0ï¼ˆå«ï¼‰å’Œ boundï¼ˆä¸åŒ…æ‹¬ï¼‰ï¼Œå‚æ•°bound æ˜¯ä¸Šé™ã€‚
 				col = random.nextInt(table.getWidth());  
 				row = random.nextInt(table.getHeight());
 				conflict = ifConflict(row, col, table);
 			} while (conflict);
 			table.place(row, col, comCell);
-			System.out.println("µçÄÔÏÂ×Ó£º["+row+' '+col+"]");
+			System.out.println("ç”µè„‘ä¸‹å­ï¼š["+row+' '+col+"]");
 			printTable(table);
-			//ÅĞ¶ÏÊäÓ®
+			//åˆ¤æ–­è¾“èµ¢
 			if (ifWin = table.ifWin(row, col)) {
 				System.out.println("You lose.");
 				break;
