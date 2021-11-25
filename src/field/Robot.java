@@ -45,7 +45,7 @@ public class Robot {
 		setChess();
 		hm.put("1", 20);
 		hm.put("11", 400);
-		hm.put("111", 420);
+		hm.put("111", 600);
 		hm.put("1111", 9000);
 
 		hm.put("12", 4);
@@ -274,11 +274,11 @@ public class Robot {
 					chessValue[i][j] = 0;
 	}
 	
-	public int getx() {
+	public int getx() {    //返回机器下点的x值
 		return maxj;
 	}
 
-	public int gety() {
+	public int gety() {    //返回机器下点的y值
 		return maxi;
 	}
 

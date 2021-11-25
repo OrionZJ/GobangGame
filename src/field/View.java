@@ -12,7 +12,8 @@ import java.awt.event.MouseListener;
 import cell.Cell;
 
 public class View extends JPanel {
-	private static final long serialVersionUID = -5258995676212660595L;//被保存的对象继承了Serializable，所以先前保存的对象已经有一个序列号，如果将类进行改变了，那么该类的序列号就会发生改变，因此被保存的对象就不能赋值给改变后的类的对象
+	//被保存的对象继承了Serializable，所以先前保存的对象已经有一个序列号，如果将类进行改变了，那么该类的序列号就会发生改变，因此被保存的对象就不能赋值给改变后的类的对象
+	private static final long serialVersionUID = -5258995676212660595L;
 	public static final int GRID_SIZE = 30;    //设置方格大小
 	private Field theField;
 	public int mouseX = -1;
@@ -25,11 +26,11 @@ public class View extends JPanel {
 	@Override
 	public void paint(Graphics g) {    //画出整个棋盘
 		super.paint(g);
-		for ( int row = 0; row<theField.getHeight(); row++ ) {
-			for ( int col = 0; col<theField.getWidth(); col++ ) {
-				Cell cell = theField.get(row, col);
+		for ( int row = 0; row < theField.getHeight(); row++ ) {
+			for ( int col = 0; col < theField.getWidth(); col++ ) {
+				Cell cell = theField.get(row, col);    //获取cell的位置
 				if ( cell != null ) {
-					cell.draw(g, col*GRID_SIZE, row*GRID_SIZE, GRID_SIZE);
+					cell.draw(g, col*GRID_SIZE, row*GRID_SIZE, GRID_SIZE);    //画出小方格
 				}
 			}
 		}
@@ -40,7 +41,7 @@ public class View extends JPanel {
 		return new Dimension(theField.getWidth()*GRID_SIZE+1, theField.getHeight()*GRID_SIZE+1);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {    //仅供调试使用
 		Field field = new Field(15,15);
 		for ( int row = 0; row<field.getHeight(); row++ ) {
 			for ( int col = 0; col<field.getWidth(); col++ ) {

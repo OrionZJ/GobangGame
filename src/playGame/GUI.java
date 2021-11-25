@@ -8,8 +8,6 @@ import javax.swing.JOptionPane;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import java.util.Random;
-
 import cell.Cell;
 import field.Field;
 import field.Robot;
@@ -50,7 +48,7 @@ public class GUI {
 		
 		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
-		Random random = new Random();
+
 		//初始化用户的棋子
 		Cell usrCell = new Cell();
 		usrCell.usr();

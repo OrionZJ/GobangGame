@@ -37,11 +37,9 @@ public class Play {
 		int width = 15;
 		int height = 15;
 		boolean ifWin = false;
-		// boolean ifFirstPlay = true;
 		
 		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
-		// Random random = new Random();
 		
 		//初始化用户的棋子
 		Cell usrCell = new Cell();
@@ -69,9 +67,10 @@ public class Play {
 							System.out.println("Overflow!");
 					}
 				}
-				conflict = ifConflict(row, col, table);
+				conflict = ifConflict(row, col, table);    //若用户输入数据不可下，则重复要求用户输入数据
 				reasonable = false;    //重置
 			} while (conflict);
+			//放置用户下的子
 			table.place(row, col, usrCell);
 			printTable(table);
 			//判断输赢
