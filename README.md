@@ -205,3 +205,11 @@ JOptionPane.showMessageDialog(null, "你赢了。");
 5. 清空chessValue数组
 
 Robot类中ai方法，返回了ai要下的棋的棋盘位置。
+
+# 后续维护
+
+鉴于期末复习时间紧迫，程序开源至
+
+https://github.com/OrionZJ/GobangGame
+
+未来酌情进行进一步完善
