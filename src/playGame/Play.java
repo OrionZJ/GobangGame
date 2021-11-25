@@ -39,6 +39,7 @@ public class Play {
 		int width = 15;
 		int height = 15;
 		boolean ifWin = false;
+		boolean ifFirstPlay = true;
 		
 		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
@@ -80,17 +81,32 @@ public class Play {
 				System.out.println("You win!");
 				break;
 			}
-			//机器随机下棋
-			// do {    
-			// 	//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
-			// 	col = random.nextInt(table.getWidth());  
-			// 	row = random.nextInt(table.getHeight());
-			// 	conflict = ifConflict(row, col, table);
-			// } while (conflict);
-			Robot robot = new Robot(table.field);
-			robot.AI(comCell.status());
-			row = robot.getY();
-			col = robot.getX();
+			
+			if (ifFirstPlay) {
+				// 机器随机下棋
+				do {    
+				//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
+				col = random.nextInt(table.getWidth());  
+				row = random.nextInt(table.getHeight());
+				conflict = ifConflict(row, col, table);
+				ifFirstPlay = false;
+			} while (conflict);
+			} else {
+				Robot robot = new Robot(table.field);
+				robot.AI(comCell.status());
+				row = robot.getY();
+				col = robot.getX();
+				conflict = ifConflict(row, col, table);
+				if (conflict) {
+					do {    
+						//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
+						col = random.nextInt(table.getWidth());  
+						row = random.nextInt(table.getHeight());
+						conflict = ifConflict(row, col, table);
+					} while (conflict);
+				}
+			}
+			
 			table.place(row, col, comCell);
 			System.out.println("电脑下子：["+row+' '+col+"]");
 			printTable(table);
