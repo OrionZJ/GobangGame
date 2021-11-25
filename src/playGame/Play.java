@@ -1,8 +1,6 @@
 package playGame;
 
 import java.util.Scanner;
-import java.util.Random;
-
 import cell.Cell;
 import field.Field;
 import field.Robot;
@@ -39,11 +37,11 @@ public class Play {
 		int width = 15;
 		int height = 15;
 		boolean ifWin = false;
-		boolean ifFirstPlay = true;
+		// boolean ifFirstPlay = true;
 		
 		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
-		Random random = new Random();
+		// Random random = new Random();
 		
 		//初始化用户的棋子
 		Cell usrCell = new Cell();
@@ -81,34 +79,13 @@ public class Play {
 				System.out.println("You win!");
 				break;
 			}
-			
-			if (ifFirstPlay) {
-				// 机器随机下棋
-				do {    
-				//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
-				col = random.nextInt(table.getWidth());  
-				row = random.nextInt(table.getHeight());
-				conflict = ifConflict(row, col, table);
-				ifFirstPlay = false;
-			} while (conflict);
-			} else {
-				Robot robot = new Robot(table.field);
-				robot.AI(comCell.status());
-				row = robot.getY();
-				col = robot.getX();
-				conflict = ifConflict(row, col, table);
-				if (conflict) {
-					do {    
-						//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
-						col = random.nextInt(table.getWidth());  
-						row = random.nextInt(table.getHeight());
-						conflict = ifConflict(row, col, table);
-					} while (conflict);
-				}
-			}
-			
+			//电脑下子
+			Robot robot = new Robot(table.field,table.getHeight(),table.getWidth());
+			robot.ai();
+			row = robot.gety(); col = robot.getx();
+			//放置电脑下的棋
 			table.place(row, col, comCell);
-			System.out.println("电脑下子：["+row+' '+col+"]");
+			System.out.println("电脑下子：["+(row+1)+' '+(col+1)+"]");
 			printTable(table);
 			//判断输赢
 			if (ifWin = table.ifWin(row, col)) {

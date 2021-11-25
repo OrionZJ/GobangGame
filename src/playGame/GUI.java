@@ -12,8 +12,8 @@ import java.util.Random;
 
 import cell.Cell;
 import field.Field;
-import field.View;
 import field.Robot;
+import field.View;
 
 public class GUI {
 	//判断落棋位置是否合理（越界）
@@ -138,15 +138,13 @@ public class GUI {
                 JOptionPane.showMessageDialog(frame, "你赢了！");
 				break;
 			}
-			//机器随机下棋
-			do {    
-				//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
-				col = random.nextInt(table.getWidth());  
-				row = random.nextInt(table.getHeight());
-				conflict = ifConflict(row, col, table);
-			} while (conflict);
+			//机器下棋
+			Robot robot = new Robot(table.field,table.getHeight(),table.getWidth());
+			robot.ai();
+			row = robot.gety(); col = robot.getx();
+			//放置电脑下的棋
 			table.place(row, col, comCell);
-			System.out.println("电脑下子：["+row+' '+col+"]");
+			System.out.println("电脑下子：["+(row+1)+' '+(col+1)+"]");
 			printTable(table);
             frame.repaint();
 			//判断输赢
