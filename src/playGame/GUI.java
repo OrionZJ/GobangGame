@@ -13,6 +13,7 @@ import java.util.Random;
 import cell.Cell;
 import field.Field;
 import field.View;
+import field.Robot;
 
 public class GUI {
 	//判断落棋位置是否合理（越界）

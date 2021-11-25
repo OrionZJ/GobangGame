@@ -13,7 +13,7 @@ public class Field {
 		clean(width, height);    //棋盘置空
 	}
 	//二位数组名称为field，内部元素为Cell类型
-	private Cell[][] field;
+	public Cell[][] field;
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
 	//放置棋子

@@ -5,7 +5,7 @@ import java.util.Random;
 
 import cell.Cell;
 import field.Field;
-// import field.View;
+import field.Robot;
 
 public class Play {
 	//判断落棋位置是否合理（越界）
@@ -43,6 +43,7 @@ public class Play {
 		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
 		Random random = new Random();
+		
 		//初始化用户的棋子
 		Cell usrCell = new Cell();
 		usrCell.usr();
@@ -80,12 +81,16 @@ public class Play {
 				break;
 			}
 			//机器随机下棋
-			do {    
-				//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
-				col = random.nextInt(table.getWidth());  
-				row = random.nextInt(table.getHeight());
-				conflict = ifConflict(row, col, table);
-			} while (conflict);
+			// do {    
+			// 	//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
+			// 	col = random.nextInt(table.getWidth());  
+			// 	row = random.nextInt(table.getHeight());
+			// 	conflict = ifConflict(row, col, table);
+			// } while (conflict);
+			Robot robot = new Robot(table.field);
+			robot.AI(comCell.status());
+			row = robot.getY();
+			col = robot.getX();
 			table.place(row, col, comCell);
 			System.out.println("电脑下子：["+row+' '+col+"]");
 			printTable(table);
