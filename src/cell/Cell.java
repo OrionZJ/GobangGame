@@ -9,11 +9,13 @@ public class Cell {
 	public void defult() { situation = 0; }    //格子没棋
 	public void usr() { situation = 1; }       //落了用户的棋
 	public void computer() { situation = 2; }  //落了电脑的棋
+	
 	public int status() { return situation; }  //返回格子落棋装填
+
 	//画出自己这个小方格
-	public void draw(Graphics g, int x, int y, int size) {
+	public void draw(Graphics g, int x, int y, int size) {    //x、y是矩形左上角的位置
 		if ( status() == 0 ) {
-			g.setColor(new Color(255,255,255));
+			g.setColor(new Color(224,224,224));
 			g.fillRect(x, y, size, size);
 		}
 		if ( status() == 1 ) {
@@ -27,10 +29,5 @@ public class Cell {
 		g.setColor(new Color(0,0,0));
 		g.drawRect(x, y, size, size);
 	}
-
-// 	public static void main(String[] args) {
-// 		// TODO Auto-generated method stub
-
-// 	}
 
 }

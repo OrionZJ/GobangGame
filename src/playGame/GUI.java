@@ -1,7 +1,5 @@
 package playGame;
 
-import java.util.Scanner;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -46,7 +44,6 @@ public class GUI {
 		int height = 15;
 		boolean ifWin = false;
 		
-		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
 
 		//初始化用户的棋子
@@ -67,8 +64,8 @@ public class GUI {
 			public void mousePressed(MouseEvent e) {
 			  // TODO Auto-generated method stub
 			  if(e.getButton()==MouseEvent.BUTTON1){    // 判断获取的按钮是否为鼠标的左击     
-				view.mouseX = (int) (e.getX() - 7) / View.GRID_SIZE ;    //不知道最左坐标为什么是7
-				view.mouseY = (int) (e.getY() - 30) / View.GRID_SIZE ;    ////不知道最上坐标为什么是30
+				view.mouseX = (int) (e.getX() - 7) / View.GRID_SIZE ;    //窗体左边界坐标为7
+				view.mouseY = (int) (e.getY() - 30) / View.GRID_SIZE ;    //包含标题栏上边界坐标为30
 				// view.mouseX = (int) e.getX();
 				// view.mouseY = (int) e.getY();
 				System.out.println("You clicked: x=" + view.mouseX + "   y=" + view.mouseY);		
@@ -152,7 +149,6 @@ public class GUI {
 				break;
 			}
 		}
-		in.close();
 	}
 
 }
