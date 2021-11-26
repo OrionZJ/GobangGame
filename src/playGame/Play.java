@@ -1,6 +1,8 @@
 package playGame;
 
 import java.util.Scanner;
+import java.util.Random;
+
 import cell.Cell;
 import field.Field;
 import field.Robot;
@@ -40,7 +42,7 @@ public class Play {
 		
 		Scanner in = new Scanner(System.in);
 		Field table = new Field(width,height);
-		
+		Random random = new Random();
 		//初始化用户的棋子
 		Cell usrCell = new Cell();
 		usrCell.usr();
@@ -82,6 +84,12 @@ public class Play {
 			Robot robot = new Robot(table.field,table.getHeight(),table.getWidth());
 			robot.ai();
 			row = robot.gety(); col = robot.getx();
+			while (conflict) {
+				//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
+				col = random.nextInt(table.getWidth());  
+				row = random.nextInt(table.getHeight());
+				conflict = ifConflict(row, col, table);
+			}
 			//放置电脑下的棋
 			table.place(row, col, comCell);
 			System.out.println("电脑下子：["+(row+1)+' '+(col+1)+"]");

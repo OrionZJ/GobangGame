@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Random;
 
 import cell.Cell;
 import field.Field;
@@ -45,6 +46,7 @@ public class GUI {
 		boolean ifWin = false;
 		
 		Field table = new Field(width,height);
+		Random random = new Random();
 
 		//初始化用户的棋子
 		Cell usrCell = new Cell();
@@ -137,6 +139,13 @@ public class GUI {
 			Robot robot = new Robot(table.field,table.getHeight(),table.getWidth());
 			robot.ai();
 			row = robot.gety(); col = robot.getx();
+			conflict = ifConflict(row, col, table);
+			while (conflict) {
+				//均匀分布int值介于0（含）和 bound（不包括），参数bound 是上限。
+				col = random.nextInt(table.getWidth());  
+				row = random.nextInt(table.getHeight());
+				conflict = ifConflict(row, col, table);
+			}
 			//放置电脑下的棋
 			table.place(row, col, comCell);
 			System.out.println("电脑下子：["+(row+1)+' '+(col+1)+"]");
