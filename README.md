@@ -267,9 +267,7 @@ JOptionPane.showMessageDialog(null, "你赢了。");
 步骤如下：
 1. 创建权值表：
 
-`HashMap<String,Integer> hm = new `
-
-`HashMap<String,Integer>();`
+`HashMap<String,Integer> hm = new HashMap<String,Integer>();`
 ```java
 hm.put("1", 20);
 hm.put("11", 400);
