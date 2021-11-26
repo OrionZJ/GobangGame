@@ -6,8 +6,8 @@ import cell.Cell;
 
 public class Robot {
 
-	private int height = 5;
-	private int width = 6;
+	private int height = 15;
+	private int width = 15;
 
 	private Cell[][] Chess;
 	private int[][] chess =  new int[height][width];;//棋盘上棋子数据 

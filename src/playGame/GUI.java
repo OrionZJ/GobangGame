@@ -41,8 +41,8 @@ public class GUI {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int width = 6;
-		int height = 5;
+		int width = 15;
+		int height = 15;
 		boolean ifWin = false;
 		
 		Field table = new Field(width,height);
