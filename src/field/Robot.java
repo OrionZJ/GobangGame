@@ -6,8 +6,8 @@ import cell.Cell;
 
 public class Robot {
 
-	private int height = 15 ;
-	private int width = 15 ;
+	private int height = 5;
+	private int width = 6;
 
 	private Cell[][] Chess;
 	private int[][] chess =  new int[height][width];;//棋盘上棋子数据 
@@ -25,8 +25,8 @@ public class Robot {
 	}
 
 	public void setChess() {    //把Field类存储的数据转换为int型二维数组
-		for(int i=0;i<Chess.length;i++){
-			for(int j = 0;j<Chess[i].length;j++){
+		for(int i=0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
 				chess[i][j]=0;
 				if(Chess[i][j].status() != 0){
 					if(Chess[i][j].status() == 1){
@@ -67,13 +67,13 @@ public class Robot {
 		hm.put("2112", 5);
 		hm.put("212", 5);
 		
-		for (int i = 0; i < chess.length; i++) {
-			for (int j = 0; j < chess.length; j++) {
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
 				if (chess[i][j] == 0) {
 					// 向右
 					String code = "";
 					int color = 0;
-					for (int k = j + 1; k < chess.length; k++) {
+					for (int k = j + 1; k < width; k++) {
 						if (chess[i][k] == 0) {
 							break;
 							}else {
@@ -119,7 +119,7 @@ public class Robot {
 					//向下
 					code = "";
 					color = 0;
-					for (int k = i + 1; k < chess.length; k++) {
+					for (int k = i + 1; k < height; k++) {
 						if(chess[k][j] == 0) {
 							break;
 						}else {
@@ -191,7 +191,7 @@ public class Robot {
 					// 左下
 					code = "";
 					color = 0;
-					for (int m = i + 1, n = j - 1;n >= 0 && m < chess.length; m++, n--) {
+					for (int m = i + 1, n = j - 1;n >= 0 && m < height; m++, n--) {
 						if(chess[m][n] == 0) {
 							break;
 						}else {
@@ -213,7 +213,7 @@ public class Robot {
 					// 右下
 					code = "";
 					color = 0;
-					for (int m = i + 1, n = j + 1;n < chess.length && m < chess.length; m++, n++) {
+					for (int m = i + 1, n = j + 1;n < width && m < height; m++, n++) {
 						if(chess[m][n] == 0) {
 							break;
 						}else {
@@ -235,7 +235,7 @@ public class Robot {
 					// 右上
 					code = "";
 					color = 0;
-					for (int m = i - 1, n = j + 1;m >= 0 && n < chess.length; m--, n++) {
+					for (int m = i - 1, n = j + 1;m >= 0 && n < width; m--, n++) {
 						if(chess[m][n] == 0) {
 							break;
 						}else {
@@ -269,7 +269,7 @@ public class Robot {
 		}
 		
 
-		for (int j = 0; j < height; j++)
+		for (int j = 0; j < width; j++)
 			for (int i = 0; i < height; i++)
 					chessValue[i][j] = 0;
 	}
