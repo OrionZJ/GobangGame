@@ -35,7 +35,7 @@ Cell有两个方法：
 重要的方法大致包括：
 - `place(int row, int col, Cell s)`更改row行、col列的棋格s的状态，也就是“把棋放到棋盘上”。
 - `get(int row, int col)`获得row行、col列的落棋情况
-- `ifWin(int row, int col)`判胜负：从横向、纵向、反斜杠和斜杠四方向去判断，任何一个方向的5个黑或白棋连成一条线，则胜利。
+- `ifWin(int row, int col)`判胜负：从横向、纵向、反斜杠和斜杠四方向去判断，任何一个方向的5同色棋连成一条线，则胜利。
 ```java
 public boolean ifWin(int row, int col) {
     int a = row;
@@ -371,7 +371,7 @@ Robot类中ai方法，将ai要下的棋的棋盘位置存于变量maxj、maxi中
 
 # 后续维护
 
-鉴于期末时间紧迫，很多奇思妙想还没来得及实现，暂将程序开源至
+鉴于期末时间紧迫，很多奇思妙想还没来得及实现，程序开源至
 
 https://github.com/OrionZJ/GobangGame
 
