@@ -28,11 +28,11 @@ public class Robot {
 		for(int i=0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
 				chess[i][j]=0;
-				if(Chess[i][j].status() != 0){
-					if(Chess[i][j].status() == 1){
-						chess[i][j]=1;
+				if(Chess[i][j].status() != 0) {
+					if(Chess[i][j].status() == 1) {
+						chess[i][j]=1; 
 					}
-					else if(Chess[i][j].status() == 2){
+					else if(Chess[i][j].status() == 2) {
 						chess[i][j]=2;
 					}
 				}
